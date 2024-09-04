@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'login_screen.dart';
@@ -29,6 +28,14 @@ class _SignupScreenState extends State<SignupScreen> {
   final FocusNode _certificationFocusNode = FocusNode();
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _checkPasswordFocusNode = FocusNode();
+
+  final RegExp emailRegexp = RegExp(r'^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$');
+  final RegExp pwRegexp = RegExp(r'^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+<>?]).{8,64}$');
+
+  final _formKey = GlobalKey<FormState>();
+  // String _id = "";
+  String _pw = "";
+  String _chPw = "";
 
   @override
   void initState() {
@@ -124,35 +131,45 @@ class _SignupScreenState extends State<SignupScreen> {
           SizedBox(
             height: 40.h,
           ),
-          Container(
+          SizedBox(
             width: 345.w,
             height: 52.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-            ),
-            child: TextField(
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(
-                  RegExp(r'^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$'),
-                ),
-              ],
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.always,
+              key: _formKey,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return null;
+                } else if (!emailRegexp.hasMatch(value)) {
+                  return "이메일 형식이 일치하지 않습니다.";
+                }
+                return null;
+              },
               focusNode: _idFocusNode,
               decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
                 border: InputBorder.none,
                 labelText: "이메일",
                 hintText: "이메일",
+                errorStyle: const TextStyle(
+                  height: 0,
+                ),
                 filled: true,
-                fillColor:
-                    _idBackColor ? const Color(0xffF4F4F4) : Colors.white,
+                fillColor: _idBackColor ? const Color(0xffF4F4F4) : Colors.white,
                 labelStyle: const TextStyle(
                   color: Color(0xffB4B4B4),
                 ),
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: const Color(0xffE0E0E0),
-                    width: 2.w,
+                    color: Color(0xffE0E0E0),
+                    width: 2,
                   ),
+                ),
+                focusedErrorBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.red,
+                    width: 2,
+                  )
                 ),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -165,30 +182,31 @@ class _SignupScreenState extends State<SignupScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff00EDA6),
-                      minimumSize: Size(65.w, 40.h),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xff00EDA6),
+                    minimumSize: Size(65.w, 40.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
                     ),
-                    onPressed: () {
-                      print("인증코드 발송");
-                    },
-                    child: Text(
-                      "Send",
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        color: const Color(0xffFFFFFF),
-                      ),
-                    )),
+                  ),
+                  onPressed: () {
+                    debugPrint("인증코드 발송");
+                  },
+                  child: Text(
+                    "Send",
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      color: const Color(0xffFFFFFF),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           SizedBox(
             width: 345.w,
             height: 52.h,
-            child: TextField(
+            child: TextFormField(
               focusNode: _certificationFocusNode,
               decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -217,17 +235,22 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           Container(
             width: 345.w,
-            height: 52.h,
+            height: 65.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.r),
             ),
-            child: TextField(
-              inputFormatters: [
-                FilteringTextInputFormatter.allow(
-                  RegExp(
-                      r'^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+<>?]).{8,64}$'),
-                ),
-              ],
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.always,
+              onSaved: (value){
+                _pw = value.toString();
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return null;
+                } else if(!pwRegexp.hasMatch(value)){
+                  return "영어, 숫자, 특수기호를 모두 한 개 이상 포함한 8~64 문자 사이의 비밀번호";
+                } return null;
+              },
               focusNode: _passwordFocusNode,
               obscureText: _obscureText,
               decoration: InputDecoration(
@@ -250,6 +273,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 labelStyle: const TextStyle(
                   color: Color(0xffB4B4B4),
                 ),
+
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: const Color(0xffE0E0E0),
@@ -266,8 +290,19 @@ class _SignupScreenState extends State<SignupScreen> {
           SizedBox(
             width: 345.w,
             height: 52.h,
-            child: TextField(
+            child: TextFormField(
               focusNode: _checkPasswordFocusNode,
+              autovalidateMode: AutovalidateMode.always,
+              onSaved: (value){
+                _chPw = value.toString();
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return null;
+                } else if(!(_pw == _chPw)){
+                  return "비밀번호가 일치하지 않습니다.";
+                } return null;
+              },
               obscureText: _chObscureText,
               decoration: InputDecoration(
                 floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -318,6 +353,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   builder: (context) => const LoginScreen(),
                 ),
               );
+              if(_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+              }
             },
             child: const Text(
               "회원가입",

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qintproject/MainPage/widget/home_app_bar.dart';
-import 'package:qintproject/ProblemPage/test_screen.dart';
+import 'package:qintproject/view/MainPage/widget/home_app_bar.dart';
+
+import '../ProblemPage/test_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 84.h,
                       decoration: BoxDecoration(
                           border: Border.all(
-                            width: 3,
+                            width: 3.w,
                             color: _borderColor1
                                 ? const Color(0xffE4F9F3)
                                 : const Color(0xff00EDA6),
@@ -57,7 +58,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: _backColor1
                               ? const Color(0xffE4F9F3)
                               : const Color(0xffC7FFEF),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "프론트엔드",
+                          style: TextStyle(
+                              color: const Color(0xff00EDA6), fontSize: 20.w),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -65,17 +74,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     right: 0.w,
                     child: Image.asset(
                       'assets/images/frame/Frame 132.png',
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  Positioned(
-                    top: 30.h,
-                    right: 130.w,
-                    child: Text(
-                      "프론트엔드",
-                      style: TextStyle(
-                          color: const Color(0xff00EDA6), fontSize: 20.w),
+                      width: 150.w,
+                      height: 150.h,
                     ),
                   ),
                 ],
@@ -102,34 +102,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 345.w,
                       height: 84.h,
                       decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3,
-                            color: _borderColor2
-                                ? const Color(0xffE4F9F3)
-                                : const Color(0xff00EDA6),
-                          ),
-                          color: _backColor2
+                        border: Border.all(
+                          width: 3.w,
+                          color: _borderColor2
                               ? const Color(0xffE4F9F3)
-                              : const Color(0xffC7FFEF),
-                          borderRadius: BorderRadius.circular(10)),
+                              : const Color(0xff00EDA6),
+                        ),
+                        color: _backColor2
+                            ? const Color(0xffE4F9F3)
+                            : const Color(0xffC7FFEF),
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "벡앤드",
+                          style: TextStyle(
+                              color: const Color(0xff00EDA6), fontSize: 20.w),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
-                    top: -30.h,
+                    top: -39.h,
                     left: 0.w,
                     child: Image.asset(
                       'assets/images/frame/Frame 133.png',
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  Positioned(
-                    top: 28.h,
-                    right: 147.w,
-                    child: Text(
-                      "벡앤드",
-                      style: TextStyle(
-                          color: const Color(0xff00EDA6), fontSize: 20.w),
+                      width: 150.w,
+                      height: 150.h,
                     ),
                   ),
                 ],
@@ -156,34 +155,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: 345.w,
                       height: 84.h,
                       decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 3,
-                            color: _borderColor3
-                                ? const Color(0xffE4F9F3)
-                                : const Color(0xff00EDA6),
-                          ),
-                          color: _backColor3
+                        border: Border.all(
+                          width: 3,
+                          color: _borderColor3
                               ? const Color(0xffE4F9F3)
-                              : const Color(0xffC7FFEF),
-                          borderRadius: BorderRadius.circular(10)),
+                              : const Color(0xff00EDA6),
+                        ),
+                        color: _backColor3
+                            ? const Color(0xffE4F9F3)
+                            : const Color(0xffC7FFEF),
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "iOS",
+                          style: TextStyle(
+                              color: const Color(0xff00EDA6), fontSize: 20.w),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
-                    top: -32.h,
+                    top: -39.h,
                     right: 0.w,
                     child: Image.asset(
                       'assets/images/frame/Frame 134.png',
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  Positioned(
-                    top: 28.h,
-                    right: 155.w,
-                    child: Text(
-                      "iOS",
-                      style: TextStyle(
-                          color: const Color(0xff00EDA6), fontSize: 20.w),
+                      width: 150.w,
+                      height: 150.h,
                     ),
                   ),
                 ],
@@ -211,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 84.h,
                       decoration: BoxDecoration(
                           border: Border.all(
-                            width: 3,
+                            width: 3.w,
                             color: _borderColor4
                                 ? const Color(0xffE4F9F3)
                                 : const Color(0xff00EDA6),
@@ -219,7 +217,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: _backColor4
                               ? const Color(0xffE4F9F3)
                               : const Color(0xffC7FFEF),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10.r)),
+                      child: Center(
+                        child: Text(
+                          "플러터",
+                          style: TextStyle(
+                            color: const Color(0xff00EDA6),
+                            fontSize: 20.w,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
@@ -227,19 +234,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     left: 0.w,
                     child: Image.asset(
                       'assets/images/frame/Frame 135.png',
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                  Positioned(
-                    top: 28.h,
-                    right: 150.w,
-                    child: Text(
-                      "플러터",
-                      style: TextStyle(
-                        color: const Color(0xff00EDA6),
-                        fontSize: 20.w,
-                      ),
+                      width: 150.w,
+                      height: 150.h,
                     ),
                   ),
                 ],

@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Text(
                 "로그인",
                 style:
-                    TextStyle(color: const Color(0xff00EDA6), fontSize: 37.w),
+                    TextStyle(color: const Color(0xff00EDA6), fontSize: 37.sp),
               ),
             ],
           ),
@@ -88,10 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             width: 345.w,
             height: 52.h,
-            child: TextField(
-              style: TextStyle(
-                fontSize: 17.sp,
-              ),
+            child: TextFormField(
               focusNode: _focusNode,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -123,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.r),
             ),
-            child: TextField(
+            child: TextFormField(
               obscureText: _obscureText,
               focusNode: _focusNode2,
               decoration: InputDecoration(

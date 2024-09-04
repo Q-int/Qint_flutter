@@ -84,6 +84,7 @@ flutter:
     - assets/images/frame/Frame 134.png
     - assets/images/frame/Frame 135.png
     - assets/images/logo/Q-int-logo.png
+    - assets/exdata.json
 
 
   # The following line ensures that the Material Icons font is

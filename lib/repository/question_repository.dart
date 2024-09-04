@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:qintproject/dataSource/data_source.dart';
 
 import '../model/question.dart';
 
-class QuestionRepository with ChangeNotifier {
+class QuestionRepository{
   final DataSource _dataSource = DataSource();
 
-  Future<List<Questions>> getQuestionList(){
+  Future<Questions> getQuestionList() {
     return _dataSource.getQuestionList();
   }
 }

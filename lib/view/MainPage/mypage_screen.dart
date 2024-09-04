@@ -2,9 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qintproject/LoginPage/login_screen.dart';
-import 'package:qintproject/MainPage/widget/my_page_app_bar.dart';
-import 'package:qintproject/ProblemPage/wronganswer_screen.dart';
+import 'package:qintproject/view/MainPage/widget/my_page_app_bar.dart';
+
+import '../LoginPage/login_screen.dart';
+import '../ProblemPage/wronganswer_screen.dart';
 
 class MypageScreen extends StatefulWidget {
   const MypageScreen({super.key});
@@ -126,15 +127,16 @@ class _MypageScreenState extends State<MypageScreen> {
                 children: [
                   const Text("오류 신고 이메일: 1234@dsm.hs.kr"),
                   TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text("로그아웃")),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text("로그아웃"),
+                  ),
                 ],
               ),
             ),

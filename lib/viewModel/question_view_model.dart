@@ -6,8 +6,8 @@ import '../model/question.dart';
 class QuestionViewModel with ChangeNotifier {
   final QuestionRepository _questionRepository = QuestionRepository();
 
-  List<Questions> _questionList = List.empty(growable: true);
-  List<Questions> get questionList => _questionList;
+  Questions _questionList = Questions(questions: []);
+  Questions get questionList => _questionList;
 
   QuestionViewModel(){
     _getQuestionList();
